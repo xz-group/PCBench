@@ -23,8 +23,9 @@ As a result, researchers can easily reconstruct the board-level security evaluat
 
 **The following table lists the released benchmarks:**
 \# | Design Name | Description | Dimension | No. of Components | No. of Layers
--- | ----------- | ----------- | --------- | ----------------- | -------------
-6  | [arduino-due] | Microcontroller devlopment board, ATsam3x8e $\mu$C with ARM Cortex-M3 core, embedded TRNG, ATmega16u2 $\mu$C for USB, 84MHz  | $102 \times 53 \ mm^2$ |141|2
+:--: | :-----------: | ----------- | :---------: | :-----------------: | :-------------:
+1 | [arduino-due]() | Microcontroller devlopment board based on ATsam3x8e (ARM Cortex-M3 core)  | 102x53 mm^2 | 141 | 2
+2 | [a13-olinuxino]() | Single-board Linux computer based on Allwinner-A13 with Cortex-A8 core CPU | 120x120 mm^2|370|4
 
 *This is not the full list of benchmarks as we continue developing the new benchmarks.* 
 

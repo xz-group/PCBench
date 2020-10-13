@@ -11,7 +11,7 @@ In the absence of a standard board-level attack benchmark, current re-search on 
 
 ## Benchmarking Methodology
 
-We generated the benchmarks based on the methodology proposed in our **2021'ASP-DAC paper: [PCBench: Benchmarking of Board-Level Hardware Attacks and Trojans]()**.
+We generated the benchmarks based on the methodology proposed in our **2021'ASP-DAC paper: *[PCBench: Benchmarking of Board-Level Hardware Attacks and Trojans]()***.
 In this paper, we systematically defined and categorized a broad range of board-level attacks. 
 For the first time, the attack vectors and construction rules for board-level attacks were developed.
 A practical and reliable board-level attack benchmark generation scheme was also developed, which can be used to produce references for evaluating countermeasures.

@@ -12,15 +12,23 @@ In the absence of a standard board-level attack benchmark, current re-search on 
 ## Benchmarking Methodology
 
 We generated the benchmarks based on the methodology proposed in our 2021'ASP-DAC paper: [PCBench: Benchmarking of Board-Level Hardware Attacks and Trojans]().
-In this paper, we systematically defined and categorize a broad range of board-level attacks. 
-For the first time, the attack vectors and construction rules for board-level attacks are developed.
-A practical and reliable board-level attack benchmark generation scheme is also developed, which can be used to produce references for evaluating countermeasures. 
+In this paper, we systematically defined and categorized a broad range of board-level attacks. 
+For the first time, the attack vectors and construction rules for board-level attacks were developed.
+A practical and reliable board-level attack benchmark generation scheme was also developed, which can be used to produce references for evaluating countermeasures.
 
 ## Released Benchmarks
+To facilitate the development of board-level attack benchmarks, representative circuit boards are chosen as the victim designs. 
+Open-source hardware projects are mainly selected due to their modern design styles, the availability of PCB designs as well as detailed documents, firmware, and/or application software. 
+As a result, researchers can easily reconstruct the board-level security evaluation benchmarks. 
 
+**The followings are the released benchmarks:**
++ Arduino Due
++ A13 Olinuxo
+
+*This is not the full list of benchmarks as we continue developing the new benchmarks.* 
 
 ## Contributiors
-The PCBench is mainly developed by Huifeng Zhu and Dr.Silvia Zhang from Washington University in St.Louis; Dr.Yier Jin from the University of Florida; and Dr.Xiaolong Guo from Kansas State University.
+The PCBench is mainly developed by *Huifeng Zhu* and *[Dr.Silvia Zhang](https://xzgroup.wustl.edu/people/xuan-silvia-zhang/)* from *Washington University in St.Louis*; *[Dr.Yier Jin](http://jin.ece.ufl.edu/)* from the *University of Florida*; and *[Dr.Xiaolong Guo](https://www.ece.k-state.edu/people/faculty/guo/)* from *Kansas State University*.
 
 We also appreciate the efforts of below contributors: 
 

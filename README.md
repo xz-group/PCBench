@@ -23,7 +23,7 @@ As a result, researchers can easily reconstruct the board-level security evaluat
 
 **The following table lists the released benchmarks:**
 
- Design Name | Description | Dimension | No. of Components (mm^2) | No. of Layers
+ Design Name | Description | Dimension (mm^2) | No. of Components | No. of Layers
  ----------- | ----------- | :---------: | :-----------------: | :-------------:
  [arduino-due]() | Microcontroller devlopment board based on ATsam3x8e with ARM Cortex-M3 core | 102x53 | 141 | 2
  [a13-olinuxino]() | Single-board Linux computer based on Allwinner-A13 with Cortex-A8 core | 120x120|370|4

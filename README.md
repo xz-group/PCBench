@@ -2,25 +2,26 @@
 
 PCBench is a benckmark for board-level security
 
+## What's 
+
 ## Table of Contents
 
 ## Introduction
 
-## Usage
+## Benchmarking Methodology
 
-## Contributing
+## Released Benchmarks
 
-## Credits
+## Contributiors
+The PCBench is mainly developed by Huifeng Zhu and Dr.Silvia Zhang from Washington University in St.Louis; Dr.Yier Jin from the University of Florida; and Dr.Xiaolong Guo from Kansas State University.
 
-## How to Refer to PySpice ?
-Up to now, the official url for PySpice is https://pyspice.fabrice-salvaire.fr
+We also appreciate the efforts of below contributors: 
 
-A permanent redirection will be implemented if the domain change in the future.
-
-On Github, you can use the pyspice topic for repository related to PySpice.
-
+## How to Refer to PCBench?
+If you are using the benchmarks provided in PCBench to develop either threat mitigation methods or new threat exploitations, please cite our official paper of PCBench. 
+You can find the paper in [PCBench: Benchmarking of Board-Level Hardware Attacks and Trojans]().
 A typical BibTeX citation would be, for example:
-
+```
 @software{PySpice,
   author = {Fabrice Salvaire}, % actual author and maintainer
   title = {PySpice},
@@ -28,12 +29,6 @@ A typical BibTeX citation would be, for example:
   version = {x.y},
   date = {yyyy-mm-dd}, % set to the release date
 }
-
-@Misc{PySpice,
-  author = {Fabrice Salvaire},
-  title = {PySpice},
-  howpublished = {\url{https://pyspice.fabrice-salvaire.fr}},
-  year = {yyyy}
-}
+```
 
 ## License

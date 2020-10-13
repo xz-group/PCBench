@@ -21,9 +21,10 @@ To facilitate the development of board-level attack benchmarks, representative c
 Open-source hardware projects are mainly selected due to their modern design styles, the availability of PCB designs as well as detailed documents, firmware, and/or application software. 
 As a result, researchers can easily reconstruct the board-level security evaluation benchmarks. 
 
-**The followings are the released benchmarks:**
-+ Arduino Due
-+ A13 Olinuxo
+**The following table lists the released benchmarks:**
+\# | Design Name | Description | Dimension | No. of Components | No. of Layers
+-- | ----------- | ----------- | --------- | ----------------- | -------------
+6  | [arduino-due] | Microcontroller devlopment board, ATsam3x8e $\mu$C with ARM Cortex-M3 core, embedded TRNG, ATmega16u2 $\mu$C for USB, 84MHz  | $102 \times 53 \ mm^2$ |141|2
 
 *This is not the full list of benchmarks as we continue developing the new benchmarks.* 
 

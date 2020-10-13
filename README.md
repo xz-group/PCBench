@@ -11,7 +11,7 @@ In the absence of a standard board-level attack benchmark, current re-search on 
 
 ## Benchmarking Methodology
 
-We generated the benchmarks based on the methodology proposed in our 2021'ASP-DAC paper: [PCBench: Benchmarking of Board-Level Hardware Attacks and Trojans]().
+We generated the benchmarks based on the methodology proposed in our **2021'ASP-DAC paper: [PCBench: Benchmarking of Board-Level Hardware Attacks and Trojans]()**.
 In this paper, we systematically defined and categorized a broad range of board-level attacks. 
 For the first time, the attack vectors and construction rules for board-level attacks were developed.
 A practical and reliable board-level attack benchmark generation scheme was also developed, which can be used to produce references for evaluating countermeasures.
@@ -34,7 +34,8 @@ We also appreciate the efforts of below contributors:
 
 ## How to Refer to PCBench?
 If you are using the benchmarks provided in PCBench to develop either threat mitigation methods or new threat exploitations, please cite our official paper of PCBench. 
-You can find the paper in the website of IEEE:.
+You can find the paper in the website of IEEE: [link]().
+
 A typical BibTeX citation would be, for example:
 ```
 @software{PySpice,

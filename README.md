@@ -38,19 +38,21 @@ We also appreciate the efforts of below contributors:
 
 ## How to Refer to PCBench?
 If you are using the benchmarks provided in PCBench to develop either threat mitigation methods or new threat exploitations, please cite our official paper of PCBench. 
-You can find the paper in the website of IEEE: [link]().
+You can find the paper in the website of IEEE: [link]() or at [link](http://jin.ece.ufl.edu/papers/ASPDAC2021_PCB.PDF).
 
 A typical BibTeX citation would be, for example:
 ```
-@software{PySpice,
-  author = {Fabrice Salvaire}, % actual author and maintainer
-  title = {PySpice},
-  url = {https://pyspice.fabrice-salvaire.fr},
-  version = {x.y},
-  date = {yyyy-mm-dd}, % set to the release date
+@software{PCBench,
+  author = {Huifeng Zhu and Xiaolong Guo and Yier Jin and Xuan Zhang}, % actual author and maintainer
+  title = {PCBench: Benchmarking of Board-Level Hardware Attacks and Trojans},
+  booktitle = {26th Asia and South Pacific Design Automation Conference (ASP-DAC)},
+  year = {2021},
+  url = {https://github.com/xz-group/PCBench},
+  version = {1.0},
+  date = {2020-10-15}, % set to the release date
 }
 ```
 ## Get Feedback
-Feel free to contact us if you have questions about PCBench: **Huifeng Zhu(zhuhuifeng@wustl.edu)**.
+Feel free to contact us if you have questions about PCBench: **Huifeng Zhu (zhuhuifeng@wustl.edu)**.
 
 ## License

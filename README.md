@@ -33,7 +33,7 @@ As a result, researchers can easily reconstruct the board-level security evaluat
 
 The fabricated Arduino-due board with and without Trojans are shown below.
 
-![Arduino Due Board](/images/arduino_due.jpg)
+![Arduino Due Board](/image/arduino_due.jpg)
 
 
 ## Contributiors

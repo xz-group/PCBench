@@ -4,6 +4,10 @@ PCBench is a free open-source benckmark for board-level hardware attacks and Tro
 
 ## What's News
 
+Version 1.0
+
+This is the initial release of the benchmars for board-level hardware security.
+
 ## Motivation
 Most modern electronic systems are hosted by printed circuit boards(PCBs), making them a ubiquitous system component that can take many different shapes and forms. In order to achieve a high level of economy of scale, the global supply chain of electronic systems has evolved into disparate segments for the design, fabrication, assembly, and testing of PCB boards and their various associated components. <br />
 As a consequence, the modern PCB supply chain exposes many vulnerabilities along its different stages, allowing adversaries to introduce malicious alterations to facilitate board-level attacks. As an emerging hardware threat, the attack and defense techniques at the board level have not yet been systemically explored and thus require a thorough and comprehensive investigation. <br />

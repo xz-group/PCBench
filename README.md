@@ -31,6 +31,11 @@ As a result, researchers can easily reconstruct the board-level security evaluat
 
 *This is not the full list of benchmarks as we continue developing the new benchmarks.* 
 
+The fabricated Arduino-due board with and without Trojans are shown below.
+
+![Arduino Due Board](/images/arduino_due.jpg)
+
+
 ## Contributiors
 The PCBench is mainly developed by *Huifeng Zhu* and *[Dr.Silvia Zhang](https://xzgroup.wustl.edu/people/xuan-silvia-zhang/)* from *Washington University in St.Louis*; *[Dr.Yier Jin](http://jin.ece.ufl.edu/)* from the *University of Florida*; and *[Dr.Xiaolong Guo](https://www.ece.k-state.edu/people/faculty/guo/)* from *Kansas State University*.
 

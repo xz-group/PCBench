@@ -30,14 +30,14 @@ As a result, researchers can easily reconstruct the board-level security evaluat
  Design Name | Description | Dimension (mm^2) | No. of Components | No. of Layers
  ----------- | ----------- | :---------: | :-----------------: | :-------------:
  [arduino-due](arduino-due) | Microcontroller devlopment board based on ATsam3x8e with ARM Cortex-M3 core | 102x53 | 141 | 2
- [a13-olinuxino]() | Single-board Linux computer based on Allwinner-A13 with Cortex-A8 core | 120x120|370|4
+ [a13-olinuxino](a13-olinuxino-g2) | Single-board Linux computer based on Allwinner-A13 with Cortex-A8 core | 120x120|370|4
 
 
 *This is not the full list of benchmarks as we continue developing the new benchmarks.* 
 
 The fabricated Arduino-due board with and without Trojans are shown below.
 
-![Arduino Due Board](/image/arduino_due.jpg)
+![Arduino Due Board](/images/arduino_due.jpg)
 
 
 ## Contributiors

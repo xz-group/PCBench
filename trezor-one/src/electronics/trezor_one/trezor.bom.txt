@@ -1,0 +1,30 @@
+Trezor
+======
+
+- 5x SMD 0603 Capacitor 1uF - C1, C2, C4, C10, C11
+- 7x SMD 0603 Capacitor 0.1uF - C3, C12, C13, C14, C15, C16, C18
+- 3x SMD 0603 Capacitor 2.2uF - C6, C7, C17
+- 1x SMD 0603 Capacitor 4.7uF - C5
+- 2x SMD 0603 Capacitor 22pF - C8, C9
+
+- 1x SMD 0603 Resistor 390k - R1
+
+- 2x Microbuton P-B17310
+  * http://www.gme.cz/mikrospinace-do-dps/p-b17310-p630-143/
+
+- 1x Micro USB (type B) Receptacle Bottom
+  * http://cz.farnell.com/molex/47346-0001/micro-usb-type-b-receptacle-bottom/dp/1568026
+
+- 1x OLED display 128x64 UG-2864HSWEG01
+  * http://www.wide.hk/products.php?product=128X64-OLED-LED-Display-Module-SSD1306-%28White-Color%29
+
+- 1x STM32F205RE
+  * http://www.st.com/web/catalog/mmc/FM141/SC1169/SS1575/LN1433/PF245096
+  * http://cz.farnell.com/stmicroelectronics/stm32f205ret6/ic-mcu-32bit-arm-64-lqfp/dp/2060897
+
+- 1x MCP1703 Low Dropout Voltage Regulator
+  * http://www.microchip.com/wwwproducts/Devices.aspx?dDocName=en530838
+  * http://cz.farnell.com/microchip/mcp1703t-3302e-cb/v-reg-ldo-250ma-3-3v-sot-23a-3/dp/1439518
+
+- 1x ABMM2 8 MHz Crystal
+  * http://cz.farnell.com/abracon/abmm2-8-000mhz-e2-t/crystal-8m-18pf-cl-6x3-6mm-smt/dp/1611803

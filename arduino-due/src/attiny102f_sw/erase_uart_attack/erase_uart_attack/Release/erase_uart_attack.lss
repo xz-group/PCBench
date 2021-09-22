@@ -1,0 +1,258 @@
+
+erase_uart_attack.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000172  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800040  00000172  00000206  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000017  00800042  00800042  00000208  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000208  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000238  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000020  00000000  00000000  00000278  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000004b2  00000000  00000000  00000298  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000003db  00000000  00000000  0000074a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000153  00000000  00000000  00000b25  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000166  00000000  00000000  00000c78  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0f c0       	rjmp	.+30     	; 0x20 <__ctors_end>
+   2:	29 c0       	rjmp	.+82     	; 0x56 <__bad_interrupt>
+   4:	28 c0       	rjmp	.+80     	; 0x56 <__bad_interrupt>
+   6:	27 c0       	rjmp	.+78     	; 0x56 <__bad_interrupt>
+   8:	26 c0       	rjmp	.+76     	; 0x56 <__bad_interrupt>
+   a:	25 c0       	rjmp	.+74     	; 0x56 <__bad_interrupt>
+   c:	24 c0       	rjmp	.+72     	; 0x56 <__bad_interrupt>
+   e:	23 c0       	rjmp	.+70     	; 0x56 <__bad_interrupt>
+  10:	22 c0       	rjmp	.+68     	; 0x56 <__bad_interrupt>
+  12:	21 c0       	rjmp	.+66     	; 0x56 <__bad_interrupt>
+  14:	20 c0       	rjmp	.+64     	; 0x56 <__bad_interrupt>
+  16:	1f c0       	rjmp	.+62     	; 0x56 <__bad_interrupt>
+  18:	1e c0       	rjmp	.+60     	; 0x56 <__bad_interrupt>
+  1a:	60 c0       	rjmp	.+192    	; 0xdc <__vector_13>
+  1c:	1c c0       	rjmp	.+56     	; 0x56 <__bad_interrupt>
+  1e:	1b c0       	rjmp	.+54     	; 0x56 <__bad_interrupt>
+
+00000020 <__ctors_end>:
+  20:	11 27       	eor	r17, r17
+  22:	1f bf       	out	0x3f, r17	; 63
+  24:	cf e5       	ldi	r28, 0x5F	; 95
+  26:	d0 e0       	ldi	r29, 0x00	; 0
+  28:	de bf       	out	0x3e, r29	; 62
+  2a:	cd bf       	out	0x3d, r28	; 61
+
+0000002c <__do_copy_data>:
+  2c:	20 e0       	ldi	r18, 0x00	; 0
+  2e:	a0 e4       	ldi	r26, 0x40	; 64
+  30:	b0 e0       	ldi	r27, 0x00	; 0
+  32:	e2 e7       	ldi	r30, 0x72	; 114
+  34:	f1 e4       	ldi	r31, 0x41	; 65
+  36:	02 c0       	rjmp	.+4      	; 0x3c <__CCP__>
+  38:	31 91       	ld	r19, Z+
+  3a:	3d 93       	st	X+, r19
+  3c:	a2 34       	cpi	r26, 0x42	; 66
+  3e:	b2 07       	cpc	r27, r18
+  40:	d9 f7       	brne	.-10     	; 0x38 <__do_copy_data+0xc>
+
+00000042 <__do_clear_bss>:
+  42:	20 e0       	ldi	r18, 0x00	; 0
+  44:	a2 e4       	ldi	r26, 0x42	; 66
+  46:	b0 e0       	ldi	r27, 0x00	; 0
+  48:	01 c0       	rjmp	.+2      	; 0x4c <.do_clear_bss_start>
+
+0000004a <.do_clear_bss_loop>:
+  4a:	1d 93       	st	X+, r17
+
+0000004c <.do_clear_bss_start>:
+  4c:	a9 35       	cpi	r26, 0x59	; 89
+  4e:	b2 07       	cpc	r27, r18
+  50:	e1 f7       	brne	.-8      	; 0x4a <.do_clear_bss_loop>
+  52:	03 d0       	rcall	.+6      	; 0x5a <main>
+  54:	8c c0       	rjmp	.+280    	; 0x16e <_exit>
+
+00000056 <__bad_interrupt>:
+  56:	d4 cf       	rjmp	.-88     	; 0x0 <__vectors>
+
+00000058 <atmel_start_init>:
+  58:	15 c0       	rjmp	.+42     	; 0x84 <system_init>
+
+0000005a <main>:
+  5a:	fe df       	rcall	.-4      	; 0x58 <atmel_start_init>
+  5c:	78 94       	sei
+  5e:	40 e1       	ldi	r20, 0x10	; 16
+  60:	e2 e4       	ldi	r30, 0x42	; 66
+  62:	f0 e0       	ldi	r31, 0x00	; 0
+  64:	ae 2f       	mov	r26, r30
+  66:	bf 2f       	mov	r27, r31
+  68:	1d 93       	st	X+, r17
+  6a:	4a 95       	dec	r20
+  6c:	e9 f7       	brne	.-6      	; 0x68 <__stack+0x9>
+  6e:	5a d0       	rcall	.+180    	; 0x124 <USART_0_read>
+  70:	82 a9       	sts	0x42, r24	; 0x800042 <__data_end>
+  72:	58 d0       	rcall	.+176    	; 0x124 <USART_0_read>
+  74:	83 a9       	sts	0x43, r24	; 0x800043 <__data_end+0x1>
+  76:	f3 cf       	rjmp	.-26     	; 0x5e <main+0x4>
+
+00000078 <USART_0_initialization>:
+  78:	2b 98       	cbi	0x05, 3	; 5
+  7a:	3b 98       	cbi	0x07, 3	; 7
+  7c:	2a 9a       	sbi	0x05, 2	; 5
+  7e:	3a 98       	cbi	0x07, 2	; 7
+  80:	32 98       	cbi	0x06, 2	; 6
+  82:	64 c0       	rjmp	.+200    	; 0x14c <USART_0_init>
+
+00000084 <system_init>:
+  84:	47 e0       	ldi	r20, 0x07	; 7
+  86:	45 bf       	out	0x35, r20	; 53
+  88:	41 b1       	in	r20, 0x01	; 1
+  8a:	11 b9       	out	0x01, r17	; 1
+  8c:	43 b1       	in	r20, 0x03	; 3
+  8e:	4f ef       	ldi	r20, 0xFF	; 255
+  90:	43 b9       	out	0x03, r20	; 3
+  92:	45 b1       	in	r20, 0x05	; 5
+  94:	40 7f       	andi	r20, 0xF0	; 240
+  96:	45 b9       	out	0x05, r20	; 5
+  98:	47 b1       	in	r20, 0x07	; 7
+  9a:	4f 60       	ori	r20, 0x0F	; 15
+  9c:	47 b9       	out	0x07, r20	; 7
+  9e:	08 9a       	sbi	0x01, 0	; 1
+  a0:	18 98       	cbi	0x03, 0	; 3
+  a2:	10 98       	cbi	0x02, 0	; 2
+  a4:	40 e0       	ldi	r20, 0x00	; 0
+  a6:	68 ed       	ldi	r22, 0xD8	; 216
+  a8:	86 e3       	ldi	r24, 0x36	; 54
+  aa:	90 e0       	ldi	r25, 0x00	; 0
+  ac:	02 d0       	rcall	.+4      	; 0xb2 <protected_write_io>
+  ae:	1a bf       	out	0x3a, r17	; 58
+  b0:	e3 cf       	rjmp	.-58     	; 0x78 <USART_0_initialization>
+
+000000b2 <protected_write_io>:
+#if defined(__GNUC__)
+  
+#ifdef RAMPZ
+	out     _SFR_IO_ADDR(RAMPZ), r1         // Clear bits 23:16 of Z
+#endif
+	mov     r30, r24
+  b2:	e8 2f       	mov	r30, r24
+	mov     r31, r25                // Load addr into Z
+  b4:	f9 2f       	mov	r31, r25
+	out     CCP, r22                // Start CCP handshake
+  b6:	6c bf       	out	0x3c, r22	; 60
+	st      Z, r20                  // Write value to I/O register
+  b8:	40 83       	st	Z, r20
+	ret                             // Return to caller
+  ba:	08 95       	ret
+
+000000bc <USART_0_default_rx_isr_cb>:
+  bc:	48 b1       	in	r20, 0x08	; 8
+  be:	e4 a3       	lds	r30, 0x54	; 0x800054 <USART_0_rx_head>
+  c0:	ef 5f       	subi	r30, 0xFF	; 255
+  c2:	e3 70       	andi	r30, 0x03	; 3
+  c4:	53 a3       	lds	r21, 0x53	; 0x800053 <USART_0_rx_tail>
+  c6:	e5 17       	cp	r30, r21
+  c8:	41 f0       	breq	.+16     	; 0xda <USART_0_default_rx_isr_cb+0x1e>
+  ca:	e4 ab       	sts	0x54, r30	; 0x800054 <USART_0_rx_head>
+  cc:	f0 e0       	ldi	r31, 0x00	; 0
+  ce:	eb 5a       	subi	r30, 0xAB	; 171
+  d0:	ff 4f       	sbci	r31, 0xFF	; 255
+  d2:	40 83       	st	Z, r20
+  d4:	42 a3       	lds	r20, 0x52	; 0x800052 <USART_0_rx_elements>
+  d6:	4f 5f       	subi	r20, 0xFF	; 255
+  d8:	42 ab       	sts	0x52, r20	; 0x800052 <USART_0_rx_elements>
+  da:	08 95       	ret
+
+000000dc <__vector_13>:
+  dc:	1f 93       	push	r17
+  de:	0f 93       	push	r16
+  e0:	0f b7       	in	r16, 0x3f	; 63
+  e2:	0f 93       	push	r16
+  e4:	10 e0       	ldi	r17, 0x00	; 0
+  e6:	4f 93       	push	r20
+  e8:	5f 93       	push	r21
+  ea:	6f 93       	push	r22
+  ec:	7f 93       	push	r23
+  ee:	8f 93       	push	r24
+  f0:	9f 93       	push	r25
+  f2:	af 93       	push	r26
+  f4:	bf 93       	push	r27
+  f6:	ef 93       	push	r30
+  f8:	ff 93       	push	r31
+  fa:	e0 a1       	lds	r30, 0x40	; 0x800040 <__DATA_REGION_ORIGIN__>
+  fc:	f1 a1       	lds	r31, 0x41	; 0x800041 <__DATA_REGION_ORIGIN__+0x1>
+  fe:	e1 17       	cp	r30, r17
+ 100:	f1 07       	cpc	r31, r17
+ 102:	09 f0       	breq	.+2      	; 0x106 <__vector_13+0x2a>
+ 104:	09 95       	icall
+ 106:	ff 91       	pop	r31
+ 108:	ef 91       	pop	r30
+ 10a:	bf 91       	pop	r27
+ 10c:	af 91       	pop	r26
+ 10e:	9f 91       	pop	r25
+ 110:	8f 91       	pop	r24
+ 112:	7f 91       	pop	r23
+ 114:	6f 91       	pop	r22
+ 116:	5f 91       	pop	r21
+ 118:	4f 91       	pop	r20
+ 11a:	0f 91       	pop	r16
+ 11c:	0f bf       	out	0x3f, r16	; 63
+ 11e:	0f 91       	pop	r16
+ 120:	1f 91       	pop	r17
+ 122:	18 95       	reti
+
+00000124 <USART_0_read>:
+ 124:	42 a3       	lds	r20, 0x52	; 0x800052 <USART_0_rx_elements>
+ 126:	44 23       	and	r20, r20
+ 128:	e9 f3       	breq	.-6      	; 0x124 <USART_0_read>
+ 12a:	e3 a3       	lds	r30, 0x53	; 0x800053 <USART_0_rx_tail>
+ 12c:	ef 5f       	subi	r30, 0xFF	; 255
+ 12e:	e3 70       	andi	r30, 0x03	; 3
+ 130:	e3 ab       	sts	0x53, r30	; 0x800053 <USART_0_rx_tail>
+ 132:	0f b7       	in	r16, 0x3f	; 63
+ 134:	f8 94       	cli
+ 136:	0f 93       	push	r16
+ 138:	42 a3       	lds	r20, 0x52	; 0x800052 <USART_0_rx_elements>
+ 13a:	41 50       	subi	r20, 0x01	; 1
+ 13c:	42 ab       	sts	0x52, r20	; 0x800052 <USART_0_rx_elements>
+ 13e:	0f 91       	pop	r16
+ 140:	0f bf       	out	0x3f, r16	; 63
+ 142:	f0 e0       	ldi	r31, 0x00	; 0
+ 144:	eb 5a       	subi	r30, 0xAB	; 171
+ 146:	ff 4f       	sbci	r31, 0xFF	; 255
+ 148:	80 81       	ld	r24, Z
+ 14a:	08 95       	ret
+
+0000014c <USART_0_init>:
+ 14c:	45 b7       	in	r20, 0x35	; 53
+ 14e:	4b 7f       	andi	r20, 0xFB	; 251
+ 150:	45 bf       	out	0x35, r20	; 53
+ 152:	1a b9       	out	0x0a, r17	; 10
+ 154:	43 e3       	ldi	r20, 0x33	; 51
+ 156:	49 b9       	out	0x09, r20	; 9
+ 158:	1e b9       	out	0x0e, r17	; 14
+ 15a:	40 e9       	ldi	r20, 0x90	; 144
+ 15c:	4d b9       	out	0x0d, r20	; 13
+ 15e:	46 e0       	ldi	r20, 0x06	; 6
+ 160:	4c b9       	out	0x0c, r20	; 12
+ 162:	1b b9       	out	0x0b, r17	; 11
+ 164:	13 ab       	sts	0x53, r17	; 0x800053 <USART_0_rx_tail>
+ 166:	14 ab       	sts	0x54, r17	; 0x800054 <USART_0_rx_head>
+ 168:	12 ab       	sts	0x52, r17	; 0x800052 <USART_0_rx_elements>
+ 16a:	80 e0       	ldi	r24, 0x00	; 0
+ 16c:	08 95       	ret
+
+0000016e <_exit>:
+ 16e:	f8 94       	cli
+
+00000170 <__stop_program>:
+ 170:	ff cf       	rjmp	.-2      	; 0x170 <__stop_program>

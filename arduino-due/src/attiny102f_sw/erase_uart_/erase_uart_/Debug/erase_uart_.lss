@@ -1,0 +1,472 @@
+
+erase_uart_.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001ac  00000000  00000000  000000b4  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .rodata       00000003  000041ac  000001ac  00000260  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  2 .data         00000002  00800040  000001af  00000263  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .bss          0000001b  00800042  00800042  00000265  2**0
+                  ALLOC
+  4 .comment      00000030  00000000  00000000  00000265  2**0
+                  CONTENTS, READONLY
+  5 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000298  2**2
+                  CONTENTS, READONLY
+  6 .debug_aranges 000000f8  00000000  00000000  000002d8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000ead  00000000  00000000  000003d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 000007f2  00000000  00000000  0000127d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000006a5  00000000  00000000  00001a6f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  0000017c  00000000  00000000  00002114  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000634  00000000  00000000  00002290  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000002b8  00000000  00000000  000028c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000098  00000000  00000000  00002b7c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0f c0       	rjmp	.+30     	; 0x20 <__ctors_end>
+   2:	29 c0       	rjmp	.+82     	; 0x56 <__bad_interrupt>
+   4:	28 c0       	rjmp	.+80     	; 0x56 <__bad_interrupt>
+   6:	27 c0       	rjmp	.+78     	; 0x56 <__bad_interrupt>
+   8:	26 c0       	rjmp	.+76     	; 0x56 <__bad_interrupt>
+   a:	25 c0       	rjmp	.+74     	; 0x56 <__bad_interrupt>
+   c:	24 c0       	rjmp	.+72     	; 0x56 <__bad_interrupt>
+   e:	23 c0       	rjmp	.+70     	; 0x56 <__bad_interrupt>
+  10:	22 c0       	rjmp	.+68     	; 0x56 <__bad_interrupt>
+  12:	21 c0       	rjmp	.+66     	; 0x56 <__bad_interrupt>
+  14:	20 c0       	rjmp	.+64     	; 0x56 <__bad_interrupt>
+  16:	1f c0       	rjmp	.+62     	; 0x56 <__bad_interrupt>
+  18:	1e c0       	rjmp	.+60     	; 0x56 <__bad_interrupt>
+  1a:	70 c0       	rjmp	.+224    	; 0xfc <__vector_13>
+  1c:	1c c0       	rjmp	.+56     	; 0x56 <__bad_interrupt>
+  1e:	1b c0       	rjmp	.+54     	; 0x56 <__bad_interrupt>
+
+00000020 <__ctors_end>:
+  20:	11 27       	eor	r17, r17
+  22:	1f bf       	out	0x3f, r17	; 63
+  24:	cf e5       	ldi	r28, 0x5F	; 95
+  26:	d0 e0       	ldi	r29, 0x00	; 0
+  28:	de bf       	out	0x3e, r29	; 62
+  2a:	cd bf       	out	0x3d, r28	; 61
+
+0000002c <__do_copy_data>:
+  2c:	20 e0       	ldi	r18, 0x00	; 0
+  2e:	a0 e4       	ldi	r26, 0x40	; 64
+  30:	b0 e0       	ldi	r27, 0x00	; 0
+  32:	ef ea       	ldi	r30, 0xAF	; 175
+  34:	f1 e4       	ldi	r31, 0x41	; 65
+  36:	02 c0       	rjmp	.+4      	; 0x3c <__CCP__>
+  38:	31 91       	ld	r19, Z+
+  3a:	3d 93       	st	X+, r19
+  3c:	a2 34       	cpi	r26, 0x42	; 66
+  3e:	b2 07       	cpc	r27, r18
+  40:	d9 f7       	brne	.-10     	; 0x38 <__do_copy_data+0xc>
+
+00000042 <__do_clear_bss>:
+  42:	20 e0       	ldi	r18, 0x00	; 0
+  44:	a2 e4       	ldi	r26, 0x42	; 66
+  46:	b0 e0       	ldi	r27, 0x00	; 0
+  48:	01 c0       	rjmp	.+2      	; 0x4c <.do_clear_bss_start>
+
+0000004a <.do_clear_bss_loop>:
+  4a:	1d 93       	st	X+, r17
+
+0000004c <.do_clear_bss_start>:
+  4c:	ad 35       	cpi	r26, 0x5D	; 93
+  4e:	b2 07       	cpc	r27, r18
+  50:	e1 f7       	brne	.-8      	; 0x4a <.do_clear_bss_loop>
+  52:	04 d0       	rcall	.+8      	; 0x5c <main>
+  54:	a9 c0       	rjmp	.+338    	; 0x1a8 <_exit>
+
+00000056 <__bad_interrupt>:
+  56:	d4 cf       	rjmp	.-88     	; 0x0 <__vectors>
+
+00000058 <atmel_start_init>:
+/**
+ * Initializes MCU, drivers and middleware in the project
+ **/
+void atmel_start_init(void)
+{
+	system_init();
+  58:	23 d0       	rcall	.+70     	; 0xa0 <system_init>
+  5a:	08 95       	ret
+
+0000005c <main>:
+
+static uint8_t rx[16];
+int main(void)
+{
+	/* Initializes MCU, drivers and middleware */
+	atmel_start_init();
+  5c:	fd df       	rcall	.-6      	; 0x58 <atmel_start_init>
+	ENABLE_INTERRUPTS();
+  5e:	78 94       	sei
+	/* Replace with your application code */
+	while (1) {
+
+		// Check that "hello" was received on loopback RX.
+		// Initialize rx buffer so strncmp() check will work
+		memset(rx, 0, sizeof(rx));
+  60:	40 e1       	ldi	r20, 0x10	; 16
+  62:	e2 e4       	ldi	r30, 0x42	; 66
+  64:	f0 e0       	ldi	r31, 0x00	; 0
+  66:	ae 2f       	mov	r26, r30
+  68:	bf 2f       	mov	r27, r31
+  6a:	1d 93       	st	X+, r17
+  6c:	4a 95       	dec	r20
+  6e:	e9 f7       	brne	.-6      	; 0x6a <__stack+0xb>
+		for (i = 0; i < strlen("11"); i++) {
+			rx[i] = USART_0_read(); // Blocks until character is available
+  70:	69 d0       	rcall	.+210    	; 0x144 <USART_0_read>
+  72:	82 a9       	sts	0x42, r24	; 0x800042 <__data_end>
+  74:	67 d0       	rcall	.+206    	; 0x144 <USART_0_read>
+  76:	83 a9       	sts	0x43, r24	; 0x800043 <__data_end+0x1>
+		}
+
+		// Compare received and expected data
+		if (strncmp("11", (char *)rx, strlen("11")) == 0)
+  78:	42 e0       	ldi	r20, 0x02	; 2
+  7a:	50 e0       	ldi	r21, 0x00	; 0
+  7c:	62 e4       	ldi	r22, 0x42	; 66
+  7e:	70 e0       	ldi	r23, 0x00	; 0
+  80:	8c ea       	ldi	r24, 0xAC	; 172
+  82:	91 e4       	ldi	r25, 0x41	; 65
+  84:	81 d0       	rcall	.+258    	; 0x188 <strncmp>
+  86:	89 2b       	or	r24, r25
+  88:	11 f4       	brne	.+4      	; 0x8e <__stack+0x2f>
+ *                  false = Pin level set to "low" state
+ */
+static inline void PORTA_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTA |= 1 << pin;
+  8a:	10 9a       	sbi	0x02, 0	; 2
+  8c:	e9 cf       	rjmp	.-46     	; 0x60 <__stack+0x1>
+	} else {
+		PORTA &= ~(1 << pin);
+  8e:	10 98       	cbi	0x02, 0	; 2
+  90:	e7 cf       	rjmp	.-50     	; 0x60 <__stack+0x1>
+
+00000092 <USART_0_initialization>:
+ */
+static inline void PORTB_set_pin_dir(const uint8_t pin, const enum port_dir direction)
+{
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRB &= ~(1 << pin);
+  92:	2b 98       	cbi	0x05, 3	; 5
+		DDRB &= ~(1 << pin);
+
+		PUEB |= 1 << pin;
+	} else if (pull_mode == PORT_PULL_OFF) {
+
+		PUEB &= ~(1 << pin);
+  94:	3b 98       	cbi	0x07, 3	; 7
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRB &= ~(1 << pin);
+		break;
+	case PORT_DIR_OUT:
+		DDRB |= 1 << pin; /* Disable pull-up when configured as output */
+  96:	2a 9a       	sbi	0x05, 2	; 5
+
+		PUEB &= ~(1 << pin);
+  98:	3a 98       	cbi	0x07, 2	; 7
+static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTB |= 1 << pin;
+	} else {
+		PORTB &= ~(1 << pin);
+  9a:	32 98       	cbi	0x06, 2	; 6
+	    // <id> pad_initial_level
+	    // <false"> Low
+	    // <true"> High
+	    false);
+
+	USART_0_init();
+  9c:	67 d0       	rcall	.+206    	; 0x16c <USART_0_init>
+  9e:	08 95       	ret
+
+000000a0 <system_init>:
+{
+	/* On AVR devices all peripherals are enabled from power on reset, this
+	 * disables all peripherals to save power. Driver shall enable
+	 * peripheral if used */
+
+	PRR = (1 << PRTIM0) | (1 << PRADC) | (1 << PRUSART);
+  a0:	47 e0       	ldi	r20, 0x07	; 7
+  a2:	45 bf       	out	0x35, r20	; 53
+		DDRA |= mask; /* Disable pull-up when configured as output */
+
+		PUEA &= ~mask;
+		break;
+	case PORT_DIR_OFF:
+		DDRA &= ~mask;
+  a4:	41 b1       	in	r20, 0x01	; 1
+  a6:	11 b9       	out	0x01, r17	; 1
+
+		PUEA |= mask;
+  a8:	43 b1       	in	r20, 0x03	; 3
+  aa:	4f ef       	ldi	r20, 0xFF	; 255
+  ac:	43 b9       	out	0x03, r20	; 3
+		DDRB |= mask; /* Disable pull-up when configured as output */
+
+		PUEB &= ~mask;
+		break;
+	case PORT_DIR_OFF:
+		DDRB &= ~mask;
+  ae:	45 b1       	in	r20, 0x05	; 5
+  b0:	40 7f       	andi	r20, 0xF0	; 240
+  b2:	45 b9       	out	0x05, r20	; 5
+
+		PUEB |= mask;
+  b4:	47 b1       	in	r20, 0x07	; 7
+  b6:	4f 60       	ori	r20, 0x0F	; 15
+  b8:	47 b9       	out	0x07, r20	; 7
+	switch (direction) {
+	case PORT_DIR_IN:
+		DDRA &= ~(1 << pin);
+		break;
+	case PORT_DIR_OUT:
+		DDRA |= 1 << pin; /* Disable pull-up when configured as output */
+  ba:	08 9a       	sbi	0x01, 0	; 1
+
+		PUEA &= ~(1 << pin);
+  bc:	18 98       	cbi	0x03, 0	; 3
+static inline void PORTA_set_pin_level(const uint8_t pin, const bool level)
+{
+	if (level) {
+		PORTA |= 1 << pin;
+	} else {
+		PORTA &= ~(1 << pin);
+  be:	10 98       	cbi	0x02, 0	; 2
+ *       on calling convention. The memory model is not visible to the
+ *       preprocessor, so it must be defined in the Assembler preprocessor directives.
+ */
+static inline void ccp_write_io(void *addr, uint8_t value)
+{
+	protected_write_io(addr, CCP_IOREG_gc, value);
+  c0:	40 e0       	ldi	r20, 0x00	; 0
+  c2:	68 ed       	ldi	r22, 0xD8	; 216
+  c4:	86 e3       	ldi	r24, 0x36	; 54
+  c6:	90 e0       	ldi	r25, 0x00	; 0
+  c8:	04 d0       	rcall	.+8      	; 0xd2 <protected_write_io>
+static inline int8_t sysctrl_init()
+{
+	/* Set up system clock prescaler according to configuration */
+	ccp_write_io((void *)&CLKPSR, (0 << CLKPS3) | (0 << CLKPS2) | (0 << CLKPS1) | (0 << CLKPS0));
+
+	SMCR = (0 << SM2) | (0 << SM1) | (0 << SM0) | // Idle
+  ca:	1a bf       	out	0x3a, r17	; 58
+	       (0 << SE);
+
+	ENABLE_INTERRUPTS();
+  cc:	78 94       	sei
+	    // <true"> High
+	    false);
+
+	sysctrl_init();
+
+	USART_0_initialization();
+  ce:	e1 df       	rcall	.-62     	; 0x92 <USART_0_initialization>
+  d0:	08 95       	ret
+
+000000d2 <protected_write_io>:
+#if defined(__GNUC__)
+  
+#ifdef RAMPZ
+	out     _SFR_IO_ADDR(RAMPZ), r1         // Clear bits 23:16 of Z
+#endif
+	mov     r30, r24
+  d2:	e8 2f       	mov	r30, r24
+	mov     r31, r25                // Load addr into Z
+  d4:	f9 2f       	mov	r31, r25
+	out     CCP, r22                // Start CCP handshake
+  d6:	6c bf       	out	0x3c, r22	; 60
+	st      Z, r20                  // Write value to I/O register
+  d8:	40 83       	st	Z, r20
+	ret                             // Return to caller
+  da:	08 95       	ret
+
+000000dc <USART_0_default_rx_isr_cb>:
+}
+
+bool USART_0_is_tx_busy()
+{
+	return (!(UCSRA & (1 << TXC)));
+}
+  dc:	58 b1       	in	r21, 0x08	; 8
+  de:	e4 a3       	lds	r30, 0x54	; 0x800054 <USART_0_rx_head>
+  e0:	ef 5f       	subi	r30, 0xFF	; 255
+  e2:	e7 70       	andi	r30, 0x07	; 7
+  e4:	43 a3       	lds	r20, 0x53	; 0x800053 <USART_0_rx_tail>
+  e6:	e4 17       	cp	r30, r20
+  e8:	41 f0       	breq	.+16     	; 0xfa <USART_0_default_rx_isr_cb+0x1e>
+  ea:	e4 ab       	sts	0x54, r30	; 0x800054 <USART_0_rx_head>
+  ec:	f0 e0       	ldi	r31, 0x00	; 0
+  ee:	eb 5a       	subi	r30, 0xAB	; 171
+  f0:	ff 4f       	sbci	r31, 0xFF	; 255
+  f2:	50 83       	st	Z, r21
+  f4:	42 a3       	lds	r20, 0x52	; 0x800052 <USART_0_rx_elements>
+  f6:	4f 5f       	subi	r20, 0xFF	; 255
+  f8:	42 ab       	sts	0x52, r20	; 0x800052 <USART_0_rx_elements>
+  fa:	08 95       	ret
+
+000000fc <__vector_13>:
+  fc:	1f 93       	push	r17
+  fe:	0f 93       	push	r16
+ 100:	0f b7       	in	r16, 0x3f	; 63
+ 102:	0f 93       	push	r16
+ 104:	10 e0       	ldi	r17, 0x00	; 0
+ 106:	4f 93       	push	r20
+ 108:	5f 93       	push	r21
+ 10a:	6f 93       	push	r22
+ 10c:	7f 93       	push	r23
+ 10e:	8f 93       	push	r24
+ 110:	9f 93       	push	r25
+ 112:	af 93       	push	r26
+ 114:	bf 93       	push	r27
+ 116:	ef 93       	push	r30
+ 118:	ff 93       	push	r31
+ 11a:	e0 a1       	lds	r30, 0x40	; 0x800040 <__DATA_REGION_ORIGIN__>
+ 11c:	f1 a1       	lds	r31, 0x41	; 0x800041 <__DATA_REGION_ORIGIN__+0x1>
+ 11e:	e1 17       	cp	r30, r17
+ 120:	f1 07       	cpc	r31, r17
+ 122:	09 f0       	breq	.+2      	; 0x126 <__vector_13+0x2a>
+ 124:	09 95       	icall
+ 126:	ff 91       	pop	r31
+ 128:	ef 91       	pop	r30
+ 12a:	bf 91       	pop	r27
+ 12c:	af 91       	pop	r26
+ 12e:	9f 91       	pop	r25
+ 130:	8f 91       	pop	r24
+ 132:	7f 91       	pop	r23
+ 134:	6f 91       	pop	r22
+ 136:	5f 91       	pop	r21
+ 138:	4f 91       	pop	r20
+ 13a:	0f 91       	pop	r16
+ 13c:	0f bf       	out	0x3f, r16	; 63
+ 13e:	0f 91       	pop	r16
+ 140:	1f 91       	pop	r17
+ 142:	18 95       	reti
+
+00000144 <USART_0_read>:
+uint8_t USART_0_read(void)
+{
+	uint8_t tmptail;
+
+	/* Wait for incoming data */
+	while (USART_0_rx_elements == 0)
+ 144:	42 a3       	lds	r20, 0x52	; 0x800052 <USART_0_rx_elements>
+ 146:	44 23       	and	r20, r20
+ 148:	e9 f3       	breq	.-6      	; 0x144 <USART_0_read>
+		;
+	/* Calculate buffer index */
+	tmptail = (USART_0_rx_tail + 1) & USART_0_RX_BUFFER_MASK;
+ 14a:	e3 a3       	lds	r30, 0x53	; 0x800053 <USART_0_rx_tail>
+ 14c:	ef 5f       	subi	r30, 0xFF	; 255
+ 14e:	e7 70       	andi	r30, 0x07	; 7
+	/* Store new index */
+	USART_0_rx_tail = tmptail;
+ 150:	e3 ab       	sts	0x53, r30	; 0x800053 <USART_0_rx_tail>
+	ENTER_CRITICAL(R);
+ 152:	0f b7       	in	r16, 0x3f	; 63
+ 154:	f8 94       	cli
+ 156:	0f 93       	push	r16
+	USART_0_rx_elements--;
+ 158:	42 a3       	lds	r20, 0x52	; 0x800052 <USART_0_rx_elements>
+ 15a:	41 50       	subi	r20, 0x01	; 1
+ 15c:	42 ab       	sts	0x52, r20	; 0x800052 <USART_0_rx_elements>
+	EXIT_CRITICAL(R);
+ 15e:	0f 91       	pop	r16
+ 160:	0f bf       	out	0x3f, r16	; 63
+
+	/* Return data */
+	return USART_0_rxbuf[tmptail];
+ 162:	f0 e0       	ldi	r31, 0x00	; 0
+ 164:	eb 5a       	subi	r30, 0xAB	; 171
+ 166:	ff 4f       	sbci	r31, 0xFF	; 255
+ 168:	80 81       	ld	r24, Z
+}
+ 16a:	08 95       	ret
+
+0000016c <USART_0_init>:
+{
+
+	// Module is in UART mode
+
+	/* Enable USART */
+	PRR &= ~(1 << PRUSART);
+ 16c:	45 b7       	in	r20, 0x35	; 53
+ 16e:	4b 7f       	andi	r20, 0xFB	; 251
+ 170:	45 bf       	out	0x35, r20	; 53
+
+#define BAUD 9600
+
+#include <utils/setbaud.h>
+
+	UBRRH = UBRRH_VALUE;
+ 172:	1a b9       	out	0x0a, r17	; 10
+	UBRRL = UBRRL_VALUE;
+ 174:	43 e3       	ldi	r20, 0x33	; 51
+ 176:	49 b9       	out	0x09, r20	; 9
+
+	UCSRA = USE_2X << U2X /*  */
+ 178:	1e b9       	out	0x0e, r17	; 14
+	        | 0 << MPCM;  /* Multi-processor Communication Mode: disabled */
+
+	UCSRB = 1 << RXCIE    /* RX Complete Interrupt Enable: enabled */
+ 17a:	40 e9       	ldi	r20, 0x90	; 144
+ 17c:	4d b9       	out	0x0d, r20	; 13
+	uint8_t x;
+
+	/* Initialize ringbuffers */
+	x = 0;
+
+	USART_0_rx_tail     = x;
+ 17e:	13 ab       	sts	0x53, r17	; 0x800053 <USART_0_rx_tail>
+	USART_0_rx_head     = x;
+ 180:	14 ab       	sts	0x54, r17	; 0x800054 <USART_0_rx_head>
+	USART_0_rx_elements = x;
+ 182:	12 ab       	sts	0x52, r17	; 0x800052 <USART_0_rx_elements>
+
+	return 0;
+}
+ 184:	80 e0       	ldi	r24, 0x00	; 0
+ 186:	08 95       	ret
+
+00000188 <strncmp>:
+ 188:	e6 2f       	mov	r30, r22
+ 18a:	f7 2f       	mov	r31, r23
+ 18c:	a8 2f       	mov	r26, r24
+ 18e:	b9 2f       	mov	r27, r25
+ 190:	41 50       	subi	r20, 0x01	; 1
+ 192:	50 40       	sbci	r21, 0x00	; 0
+ 194:	30 f0       	brcs	.+12     	; 0x1a2 <strncmp+0x1a>
+ 196:	8d 91       	ld	r24, X+
+ 198:	01 91       	ld	r16, Z+
+ 19a:	80 1b       	sub	r24, r16
+ 19c:	19 f4       	brne	.+6      	; 0x1a4 <strncmp+0x1c>
+ 19e:	00 23       	and	r16, r16
+ 1a0:	b9 f7       	brne	.-18     	; 0x190 <strncmp+0x8>
+ 1a2:	88 1b       	sub	r24, r24
+ 1a4:	99 0b       	sbc	r25, r25
+ 1a6:	08 95       	ret
+
+000001a8 <_exit>:
+ 1a8:	f8 94       	cli
+
+000001aa <__stop_program>:
+ 1aa:	ff cf       	rjmp	.-2      	; 0x1aa <__stop_program>
